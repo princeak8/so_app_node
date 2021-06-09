@@ -28,13 +28,14 @@ var mvar = ['8','15','10','15','12','14','16','18','13','17'];
 var current = ['256','285','300','250','238','244','313','281','237','287'];
 var voltage = ['340','335','332','350','348','346','336','330','333','338'];
 client.on('connect', function () {
-    client.subscribe('ugwuaji330kv/K1U/#', function (err) {
+    client.subscribe('osogbo/CR/#', function (err) {
         if (!err) {
+            client.publish('osogbo/CR/voltage', 'hello voltage');
+            client.publish('osogbo/CR/frequency', 'hello frequency');
             /*for(var i=0; i<10; i++) {
                 client.publish('presence', i.toString());
             }*/
-            let start = true;
-            
+            /*
             setInterval(()=>{  
                 var n = Math.floor(Math.random() * 10);
                 client.publish('ugwuaji330kv/K1U/power', power[n]);
@@ -48,6 +49,7 @@ client.on('connect', function () {
                 n = Math.floor(Math.random() * 10);
                 client.publish('ugwuaji330kv/K1U/voltage', voltage[n]);
             }, 10000);
+            */
         }else{
             console.log(err);
         }
@@ -68,16 +70,18 @@ if(data == undefined) {
 }
 client.on('message', async function (topic, message) {
     // message is Buffer
-    //console.log('Message from '+topic+': '+message.toString());
-    data = await add(topic, message.toString(), data);
+    console.log('Message from '+topic+': '+message.toString());
+    //data = await add(topic, message.toString(), data);
     //console.log(data);
     //client.end();
+    /*
     wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
             //wsData = [data];
           client.send(JSON.stringify(data));
         }
     });
+    */
 })
 
 
