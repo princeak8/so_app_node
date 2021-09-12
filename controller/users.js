@@ -2,6 +2,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+exports.socketToken = (token) => {
+    setToken = '654321';
+    return (token == setToken);
+}
+
 exports.register = async (req, res) => {
     const password = await bcrypt.hash(req.body.password, 10);
     const username = req.body.username;
@@ -14,7 +19,13 @@ exports.register = async (req, res) => {
                 statusCode: 200,
                 message: 'User registered successfully'
             });
-        })
+        }).catch((err) => {
+            console.log('could not add user: '+err);
+            res.status(500).json({
+                statusCode: 500,
+                message: 'could not add user: '+err
+            });
+        }) 
     }catch(err){
         console.log('could not add user: '+err);
         res.status(500).json({
@@ -43,8 +54,7 @@ exports.login = async (req, res) => {
                             statusCode: 500,
                             message: 'could not login: Wrong Username/Password'
                         });
-                    }
-                    if(ans) {
+                    }else if(ans) {
                         console.log(result);
                         const token = jwt.sign({
                                 username: result.username,
@@ -60,9 +70,21 @@ exports.login = async (req, res) => {
                             token: token,
                             message: 'User logged in successfully'
                         });
+                    }else{
+                        console.log('could not login: Wrong Username/Password');
+                        res.status(500).json({
+                            statusCode: 500,
+                            message: 'could not login: Wrong Username/Password'
+                        });
                     }
                 });
-            })
+            }).catch((err) => {
+                console.log('could not login: '+err);
+                res.status(500).json({
+                    statusCode: 500,
+                    message: 'could not login: '+err
+                });
+            }) 
         }catch(err){
             console.log('could not login: '+err);
             res.status(500).json({

@@ -4,7 +4,8 @@
   "description": "system operations real-time grid monitoring app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec node_modules/.bin/babel-node app.js"
   },
   "author": "Akachukwu",
   "license": "MIT",
@@ -17,9 +18,17 @@
     "jsonwebtoken": "^8.5.1",
     "mqtt": "^4.2.6",
     "mysql": "^2.18.1",
+    "query-string": "^7.0.1",
     "websocket": "^1.0.34"
   },
   "engines": {
     "node": "12.17.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "nodemon": "^2.0.12"
   }
 }
