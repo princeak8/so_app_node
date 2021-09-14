@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const Connection = require('../models/Connection');
 
 exports.socketToken = async (token) => {
-    return true;
     const res = await getToken(token);
     return res;
     // setToken = '654321';
