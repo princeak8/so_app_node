@@ -1,35 +1,25 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
 const preparedData = () => {
     return {
-        name: "Adiabor TS",
+        id: "afamIv_vGs",
         lines: [
-            {
-                name: "d1b",
-                transmissionData:  transmissionData(generateValues())
-            },
-            {
-                name: "d2b",
-                transmissionData: transmissionData(generateValues())
-            },
 
             //Added by me
             {
-                name: "a1b",
+                name: "f4p",
                 transmissionData: transmissionData(generateValues())
             },
             {
-                name: "a2b",
+                name: "f5p",
                 transmissionData: transmissionData(generateValues())
-            }
+            },
         ]
     }
 };
 
-export const adiabor = (wss) => {
+export const afamIv_vGs = (wss) => {
     setInterval(function(){
         wss.clients.forEach((client) => {
             //console.log('client ready');
@@ -41,5 +31,3 @@ export const adiabor = (wss) => {
         });
     }, 30000);
 };
-
-//export default send;

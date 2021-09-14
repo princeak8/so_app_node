@@ -32,6 +32,30 @@ const preparedData = () => {
             {
                 name: "h2u",
                 transmissionData: transmissionData(generateValues())
+            },
+            {
+                name: "u1a",
+                transmissionData:  transmissionData(generateValues())
+            },
+            {
+                name: "u2a",
+                transmissionData: transmissionData(generateValues())
+            },
+            {
+                name: "k1u",
+                transmissionData:  transmissionData(generateValues())
+            },
+            {
+                name: "k2u",
+                transmissionData: transmissionData(generateValues())
+            },
+            {
+                name: "k3u",
+                transmissionData:  transmissionData(generateValues())
+            },
+            {
+                name: "k4u",
+                transmissionData: transmissionData(generateValues())
             }
         ]
     }
