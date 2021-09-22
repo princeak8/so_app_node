@@ -1,12 +1,32 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var parasEnergyGs = {
-    name: "PARA ENERGY GS",
-    id: "parasEnergyGs",
-    gs: true,
-    gsId: 'parasEnergyPs',
-    has132: false,
-    lines: [
-        
-    ]
+const preparedData = () => {    
+    return {
+        id: "parasEnergyGs",
+        lines: [
+            {
+                id: "d21p",
+                td
+            },
+            {
+                id: "d22p",
+                td
+            }
+        ]
+    }
+}
+
+export const parasEnergyGs = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

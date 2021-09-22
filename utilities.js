@@ -13,9 +13,9 @@ exports.generateValues = () => {
 export const transmissionData = (vals) => {
     var {volt, current, power, mvar} = vals;
     return {
-        power: power,
-        current: current,
-        voltage: volt,
+        mw: power,
+        a: current,
+        v: volt,
         mvar: mvar
     }
 };

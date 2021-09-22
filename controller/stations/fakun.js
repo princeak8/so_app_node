@@ -1,25 +1,28 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var fakun = {
-    name: "FAKUN TS",
-    id: "fakun",
-    lines: [
-        {
-            connectionRoot: true,
-            name: "k1f",
-            id: "k1f",
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'k1f-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "fakun",
+        lines: [
+            {
+                id: "k1f",
+                td
+            }
+        ]
+    }
+}
+
+export const fakun = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

@@ -5,25 +5,19 @@ const { transmissionData, generateValues } = require('../../utilities');
 
 const preparedData = () => {
     return {
-        name: "Adiabor TS",
-        lines: [
+        "name": "Adiabor TS",
+        "lines": [
             {
-                name: "d1b",
-                transmissionData:  transmissionData(generateValues())
+                "name": "d1b",
+                "td":  transmissionData(generateValues())
             },
             {
-                name: "d2b",
-                transmissionData: transmissionData(generateValues())
-            },
-
-            //Added by me
-            {
-                name: "a1b",
-                transmissionData: transmissionData(generateValues())
+                "name": "d2b",
+                "td": transmissionData(generateValues())
             },
             {
-                name: "a2b",
-                transmissionData: transmissionData(generateValues())
+                "name": "d22t",
+                "td": transmissionData(generateValues())
             }
         ]
     }

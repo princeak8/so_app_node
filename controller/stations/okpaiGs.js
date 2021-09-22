@@ -1,20 +1,32 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var okpaiGs = {
-    name: "OKPAI GS",
-    id: "okpaiGs",
-    lines: [
-        {
-            name: "k1t",
-            id: "k1t",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "k2t",
-            id: "k2t",
-            connectionRoot: false,
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "okpaiGs",
+        lines: [
+            {
+                id: "k1t",
+                td
+            },
+            {
+                id: "k2t",
+                td
+            }
+        ]
+    }
+}
+
+export const okpaiGs = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

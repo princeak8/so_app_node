@@ -6,49 +6,49 @@ const preparedData = () => {
         id: "alaoji",
         lines: [
             {
-                name: "l7a",
-                transmissionData: transmissionData(generateValues())
+                id: "l7a",
+                td: transmissionData(generateValues())
             },
             {
-                name: "l8a",
-                transmissionData: transmissionData(generateValues())
+                id: "l8a",
+                td: transmissionData(generateValues())
             },
             {
-                name: "t4a",
-                transmissionData: transmissionData(generateValues())
+                id: "t4a",
+                td: transmissionData(generateValues())
             },
             {
-                name: "f1a",
-                transmissionData: transmissionData(generateValues())
+                id: "f1a",
+                td: transmissionData(generateValues())
             },
             {
-                name: "f2a",
-                transmissionData: transmissionData(generateValues())
+                id: "f2a",
+                td: transmissionData(generateValues())
             },
             {
-                name: "a1k",
-                transmissionData: transmissionData(generateValues())
+                id: "a1k",
+                td: transmissionData(generateValues())
             },
             {
-                name: "a2k",
-                transmissionData: transmissionData(generateValues())
+                id: "a2k",
+                td: transmissionData(generateValues())
             },
             //Added by me
             {
-                name: "a1b",
-                transmissionData: transmissionData(generateValues())
+                id: "a1b",
+                td: transmissionData(generateValues())
             },
             {
-                name: "a2b",
-                transmissionData: transmissionData(generateValues())
+                id: "a2b",
+                td: transmissionData(generateValues())
             },
             {
-                name: "a1o",
-                transmissionData: transmissionData(generateValues())
+                id: "a1o",
+                td: transmissionData(generateValues())
             },
             {
-                name: "a2o",
-                transmissionData: transmissionData(generateValues())
+                id: "a2o",
+                td: transmissionData(generateValues())
             },
         ]
     }

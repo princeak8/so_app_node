@@ -1,37 +1,36 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var newHaven = {
-    name: "NEW HAVEN TS",
-    id: "newHaven",
-    lines: [
-        {
-            name: "h1u",
-            id: "h1u",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "h2u",
-            id: "h2u",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "t3h",
-            id: "t3h",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 't3h-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "newHaven",
+        lines: [
+            {
+                id: "h1u",
+                td
+            },
+            {
+                id: "h2u",
+                td
+            },
+            {
+                id: "t3h",
+                td
+            }
+        ]
+    }
+}
+
+export const newHaven = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

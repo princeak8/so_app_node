@@ -6,8 +6,8 @@ const preparedData = () => {
         id: "azuraIppGs",
         lines: [
             {
-                name: "v7b",
-                transmissionData: transmissionData(generateValues())
+                id: "v7b",
+                td: transmissionData(generateValues())
             },
         ]
     }

@@ -1,54 +1,40 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var gwagwalada = {
-    name: "GWAGWALADA TS",
-    id: "gwagwalada",
-    lines: [
-        {
-            name: "r5g",
-            id: "r5g",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "g5b",
-            id: "g5b",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "l6g",
-            id: "l6g",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'l6g-h-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "l7g",
-            id: "l7g",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'l7g-h-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "gwagwalada",
+        lines: [
+            {
+                id: "r5g",
+                td
+            },
+            {
+                id: "g5b",
+                td
+            },
+            {
+                id: "l6g",
+                td
+            },
+            {
+                id: "l7g",
+                td
+            }
+        ]
+    }
+}
+
+export const gwagwalada = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

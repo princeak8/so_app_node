@@ -3,15 +3,23 @@ const { transmissionData, generateValues } = require('../../utilities');
 
 const preparedData = () => {
     return {
-        id: "ahaoda",
-        lines: [
+        "id": "ahaoda",
+        "lines": [
             {
-                name: "h1o",
-                transmissionData: transmissionData(generateValues())
+                "id": "w21h",
+                "td": transmissionData(generateValues())
             },
             {
-                name: "h2o",
-                transmissionData: transmissionData(generateValues())
+                "id": "w22h",
+                "td": transmissionData(generateValues())
+            },
+            {
+                "id": "h23r",
+                "td": transmissionData(generateValues())
+            },
+            {
+                "id": "h24r",
+                "td": transmissionData(generateValues())
             },
         ]
     }

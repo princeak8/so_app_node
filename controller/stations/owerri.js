@@ -1,116 +1,40 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var owerri = {
-    name: "OWERRI TS",
-    id: "owerri",
-    is132: true,
-    lines: [
-        //Added by me
-        {
-            name: "a1o",
-            id: "a1o",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'a1o-h-0',
-                    start: true,
-                    end: false,
-                    position: 0,
-                    arrowDirection: 'left'
-                },
-                {
-                    alignment: 'v',
-                    direction: 'up',
-                    name: 'a1o-v-1',
-                    start: false,
-                    end: false,
-                    position: 1
-                },
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'a1o-h-2',
-                    start: false,
-                    end: true,
-                    position: 2,
-                    arrowDirection: 'right'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "a2o",
-            id: "a2o",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'a2o-h-0',
-                    start: true,
-                    end: false,
-                    position: 0,
-                    arrowDirection: 'left'
-                },
-                {
-                    alignment: 'v',
-                    direction: 'up',
-                    name: 'a2o-v-1',
-                    start: false,
-                    end: false,
-                    position: 1
-                },
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'a2o-h-2',
-                    start: false,
-                    end: true,
-                    position: 2,
-                    arrowDirection: 'right'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "h1o",
-            id: "h1o",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'h1o-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                }
-            ],
-            transmissionData
-        },
-        {
-            name: "h2o",
-            id: "h2o",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'h2o-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                }
-            ],
-            transmissionData
-        },
-    ]
+const preparedData = () => {    
+    return {
+        id: "owerri",
+        lines: [
+            {
+                id: "a23w",
+                td
+            },
+            {
+                id: "a24w",
+                td
+            },
+            {
+                id: "w21h",
+                td
+            },
+            {
+                id: "w22h",
+                td
+            },
+        ]
+    }
+}
+
+export const owerri = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

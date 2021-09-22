@@ -1,20 +1,32 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var lekki = {
-    name: "LEKKI TS",
-    id: "lekki",
-    lines: [
-        {
-            name: "j1e",
-            id: "j1e",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "b1e",
-            id: "b1e",
-            connectionRoot: false,
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "lekki",
+        lines: [
+            {
+                id: "j1e",
+                td
+            },
+            {
+                id: "b1e",
+                td
+            }
+        ]
+    }
+}
+
+export const lekki = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

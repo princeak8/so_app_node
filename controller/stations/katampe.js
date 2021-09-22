@@ -1,31 +1,31 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var katampe = {
-    name: "KATAMPE TS",
-    id: "katampe",
-    lines: [
-        {
-            name: "r4b",
-            id: "r4b",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "g5b",
-            id: "g5b",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'g5b-h-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    return {
+        id: "katampe",
+        lines: [
+            {
+                id: "r4b",
+                td
+            },
+            {
+                id: "g5b",
+                td
+            }
+        ]
+    }
+}
+
+export const katampe = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

@@ -1,54 +1,49 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var kainji = {
-    name: "KAINJI TS",
-    id: "kainjiTs",
-    lines: [
-        {
-            name: "k3r",
-            id: "k3r",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "k1f",
-            id: "k1f",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "k1j",
-            id: "k1j",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'k1j-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "k2j",
-            id: "k2j",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'k2j-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "kainjiTs",
+        lines: [
+            {
+                id: "k3r",
+                td
+            },
+            {
+                id: "k1f",
+                td
+            },
+            {
+                id: "k1j",
+                td
+            },
+            {
+                id: "k2j",
+                td
+            },
+
+            {
+                id: "kn1k",
+                td
+            },
+            {
+                id: "kn2k",
+                td
+            }
+        ]
+    }
+}
+
+export const kainji = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

@@ -6,12 +6,12 @@ const preparedData = () => {
         id: "akangba",
         lines: [
             {
-                name: "w3l",
-                transmissionData: transmissionData(generateValues())
+                id: "w3l",
+                td: transmissionData(generateValues())
             },
             {
-                name: "w2l",
-                transmissionData: transmissionData(generateValues())
+                id: "w2l",
+                td: transmissionData(generateValues())
             },
         ]
     }

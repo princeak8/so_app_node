@@ -1,54 +1,37 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var itu = {
-    name: "ITU TS",
-    id: "itu",
-    is132: true,
-    lines: [
-        //Added by me
-        {
-            name: "b1i",
-            id: "b1i",
-            connectionRoot: false,
-            transmissionData
-        },
+const preparedData = () => {    
+    return {
+        id: "itu",
+        lines: [
+            {
+                id: "b21t",
+                td
+            },
 
-        {
-            name: "i1b",
-            id: "i1b",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'i1b-h-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        },
+            {
+                id: "d22t",
+                td
+            },
+            {
+                id: "e22t",
+                td
+            }
+        ]
+    }
+}
 
-        {
-            name: "i1e",
-            id: "i1e",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'i1e-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+export const itu = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

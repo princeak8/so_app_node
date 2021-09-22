@@ -1,94 +1,48 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var oshogbo = {
-    name: "OSOGBO TS",
-    id: "oshogbo",
-    lines: [
-        {
-            name: "j1h",
-            id: "j1h",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "j2h",
-            id: "j2h",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "h3g",
-            id: "h3g",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'h3g-h-0',
-                    start: true,
-                    end: false,
-                    position: 0,
-                    arrowDirection: 'left'
-                },
-                {
-                    alignment: 'v',
-                    direction: 'up',
-                    name: 'h3g-v-1',
-                    start: false,
-                    end: false,
-                    position: 1
-                },
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'h3g-h-2',
-                    start: false,
-                    end: true,
-                    position: 2,
-                    arrowDirection: 'right'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "h2a",
-            id: "h2a",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "h1w",
-            id: "h1w",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'h1w-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "h7v",
-            id: "h7v",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'h7v-h-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "oshogbo",
+        lines: [
+            {
+                id: "j1h",
+                td
+            },
+            {
+                id: "j2h",
+                td
+            },
+            {
+                id: "h3g",
+                td
+            },
+            {
+                id: "h2a",
+                td
+            },
+            {
+                id: "h1w",
+                td
+            },
+            {
+                id: "h7v",
+                td
+            }
+        ]
+    }
+}
+
+export const oshogbo = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

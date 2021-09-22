@@ -1,78 +1,48 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var shiroroGs = {
-    name: "SHIRORO GS",
-    id: "shiroroGs",
-    gs: true,
-    gsId: 'shiroroPs',
-    has132: false,
-    lines: [
-        {
-            name: "j3r",
-            id: "j3r",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "j7r",
-            id: "j7r",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "r1m",
-            name: "r1m",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "r4b",
-            id: "r4b",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'r4b-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "r2m",
-            id: "r2m",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "r5g",
-            id: "r5g",
-            connectionRoot: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'r5g-v-0',
-                    start: true,
-                    end: false,
-                    position: 0,
-                    arrowDirection: 'up'
-                },
-                {
-                    alignment: 'h',
-                    direction: 'right',
-                    name: 'r5g-h-1',
-                    start: false,
-                    end: true,
-                    position: 1,
-                    arrowDirection: 'right'
-                }
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "shiroroGs",
+        lines: [
+            {
+                id: "j3r",
+                td
+            },
+            {
+                id: "j7r",
+                td
+            },
+            {
+                id: "r1m",
+                td
+            },
+            {
+                id: "r4b",
+                td
+            },
+            {
+                id: "r2m",
+                td
+            },
+            {
+                id: "r5g",
+                td
+            }
+        ]
+    }
+}
+
+export const shiroroGs = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

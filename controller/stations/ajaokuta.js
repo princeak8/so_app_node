@@ -6,28 +6,28 @@ const preparedData = () => {
         id: "ajaokuta",
         lines: [
             {
-                name: "j1l",
-                transmissionData: transmissionData(generateValues())
+                id: "j1l",
+                td: transmissionData(generateValues())
             },
             {
-                name: "j2l",
-                transmissionData: transmissionData(generateValues())
+                id: "j2l",
+                td: transmissionData(generateValues())
             },
             {
-                name: "b11j",
-                transmissionData: transmissionData(generateValues())
+                id: "b11j",
+                td: transmissionData(generateValues())
             },
             {
-                name: "b12j",
-                transmissionData: transmissionData(generateValues())
+                id: "b12j",
+                td: transmissionData(generateValues())
             },
             {
-                name: "r1j",
-                transmissionData: transmissionData(generateValues())
+                id: "r1j",
+                td: transmissionData(generateValues())
             },
             {
-                name: "r2j",
-                transmissionData: transmissionData(generateValues())
+                id: "r2j",
+                td: transmissionData(generateValues())
             },
         ]
     }

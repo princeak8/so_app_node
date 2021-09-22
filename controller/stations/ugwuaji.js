@@ -1,65 +1,47 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 var WebSocket = require('ws');
-const { randomNumber } = require('../../utilities');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-const generateValues = () => {
-    const volt = randomNumber(280, 360);
-    const current = randomNumber(200, 500);
-    const power = randomNumber(95, 300);
-    const mvar = randomNumber(0, 45);
-    return {volt: parseInt(volt), current: parseInt(current), power: parseInt(power), mvar: parseInt(mvar)};
-}
-
-const transmissionData = (vals) => {
-    var {volt, current, power, mvar} = vals;
+const preparedData = () => {    
     return {
-        power: power,
-        current: current,
-        voltage: volt,
-        mvar: mvar
-    }
-};
-
-const preparedData = () => {
-    return {
-        name: "Ugwuaji TS",
+        id: "ugwuaji",
         lines: [
             {
-                name: "h1u",
-                transmissionData:  transmissionData(generateValues())
+                id: "h1u",
+                td
             },
             {
-                name: "h2u",
-                transmissionData: transmissionData(generateValues())
+                id: "h2u",
+                td
             },
             {
-                name: "u1a",
-                transmissionData:  transmissionData(generateValues())
+                id: "u1a",
+                connectionRoot: false,
+                td
             },
             {
-                name: "u2a",
-                transmissionData: transmissionData(generateValues())
+                id: "u2a",
+                td
             },
             {
-                name: "k1u",
-                transmissionData:  transmissionData(generateValues())
+                id: "k1u",
+                td
             },
             {
-                name: "k2u",
-                transmissionData: transmissionData(generateValues())
+                id: "k2u",
+                td
             },
             {
-                name: "k3u",
-                transmissionData:  transmissionData(generateValues())
+                id: "k3u",
+                td
             },
             {
-                name: "k4u",
-                transmissionData: transmissionData(generateValues())
+                id: "k4u",
+                td
             }
         ]
     }
-};
+}
 
 export const ugwuaji = (wss) => {
     setInterval(function(){
@@ -73,5 +55,3 @@ export const ugwuaji = (wss) => {
         });
     }, 30000);
 };
-
-//export default send;

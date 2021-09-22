@@ -1,52 +1,36 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var eket = {
-    name: "EKET TS",
-    id: "eket",
-    is132: true,
-    lines: [
-        //Added by me
-        {
-            name: "i1e",
-            id: "i1e",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "e1m",
-            id: "e1m",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'e1m-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        },
-        {
-            name: "e2m",
-            id: "e2m",
-            connectionRoot: true,
-            is132Connection: true,
-            connections: [
-                {
-                    alignment: 'v',
-                    direction: 'down',
-                    name: 'e2m-v-0',
-                    start: true,
-                    end: true,
-                    position: 0,
-                    arrowDirection: 'both'
-                },
-            ],
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "eket",
+        lines: [
+            {
+                id: "e22t",
+                td
+            },
+            {
+                id: "e21m",
+                td
+            },
+            {
+                id: "e22m",
+                td
+            }
+        ]
+    }
+}
+
+export const eket = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

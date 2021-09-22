@@ -1,29 +1,36 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var sapeleGs = {
-    name: "SAPELE GS",
-    id: "sapeleGs",
-    gs: true,
-    gsId: 'sapeleSteamPs',
-    has132: false,
-    lines: [
-        {
-            name: "s3b",
-            id: "s3b",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "s4b",
-            id: "s4b",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "s5b",
-            id: "s5b",
-            connectionRoot: false,
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "sapeleGs",
+        lines: [
+            {
+                id: "s3b",
+                td
+            },
+            {
+                id: "s4b",
+                td
+            },
+            {
+                id: "s5b",
+                td
+            }
+        ]
+    }
+}
+
+export const sapeleGs = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };

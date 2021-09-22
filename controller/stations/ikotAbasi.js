@@ -1,22 +1,40 @@
-import transmissionData from '../TransmissionData';
+var WebSocket = require('ws');
+const { transmissionData, generateValues } = require('../../utilities');
+const td = transmissionData(generateValues());
 
-export var ikotAbasi = {
-    name: "IKOT ABASI GS",
-    id: "ikotAbasi",
-    is132: true,
-    lines: [
-        //Added by me
-        {
-            name: "m1o",
-            id: "m1o",
-            connectionRoot: false,
-            transmissionData
-        },
-        {
-            name: "m2o",
-            id: "m2o",
-            connectionRoot: false,
-            transmissionData
-        }
-    ]
+const preparedData = () => {    
+    return {
+        id: "ikotAbasi",
+        lines: [
+            {
+                id: "s1k",
+                td
+            },
+            {
+                id: "s2k",
+                td
+            },
+            {
+                id: "bm23s",
+                td
+            },
+            {
+                id: "bm24s",
+                td
+            }
+        ]
+    }
+}
+
+export const ikotAbasi = (wss) => {
+    setInterval(function(){
+        wss.clients.forEach((client) => {
+            //console.log('client ready');
+            if (client.readyState === WebSocket.OPEN) {
+                //wsData = [data];
+                const vals = preparedData();
+                client.send(JSON.stringify(vals));
+            }
+        });
+    }, 30000);
 };
