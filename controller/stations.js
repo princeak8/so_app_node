@@ -5,13 +5,13 @@ import {
     onitsha, oshogbo, owerri, parasEnergyGs,phMain, riversIppGs, sagamu, sakete, sapeleGs, sapeleNippGs, shiroroGs, transamadiGs, ugwuaji, yenegoa, yola
 } from './stations/index';
 
-const send = (wss) => {
+const send = (wss, client) => {
     adiabor(wss);
     aba(wss);
     afamIv_vGs(wss);
     afamViGs(wss);
     ahaoda(wss);
-    ajah(wss);
+    ajah(wss, client);
     ajaokuta(wss);
     akangba(wss);
     aladja(wss);

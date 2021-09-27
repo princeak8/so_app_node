@@ -56,7 +56,17 @@ wss.on('connection', (ws) => {
     ws.send('Welcome to the chat, enjoy :)');
 });
 
-StationsController(wss);
+const options={
+    clientId:"mqttjs01",
+    username:"akalo",
+    password:"akalo88",
+    clean:true
+};
+//host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
+const host = "mqtt://127.0.0.1";
+var client  = mqtt.connect(host, options);
+
+StationsController(wss, client);
 
 // setInterval(function(){
 //     wss.clients.forEach((client) => {
