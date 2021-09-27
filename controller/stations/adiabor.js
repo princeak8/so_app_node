@@ -5,7 +5,7 @@ const { transmissionData, generateValues } = require('../../utilities');
 
 const preparedData = () => {
     return {
-        "name": "Adiabor TS",
+        "id": "adiabor",
         "lines": [
             {
                 "name": "d1b",
