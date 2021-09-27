@@ -16,11 +16,12 @@ const app = express();
 //Perform all mqtt and websocket actions
 options={
     clientId:"mqttjs01",
-    //username:"akalo",
-    //password:"akalo88",
+    username:"akalo",
+    password:"akalo88",
     clean:true
 };
-host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
+//host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
+host = "mqtt://127.0.0.1";
 var client  = mqtt.connect(host, options);
 
 var power = ['156','155','160','150','128','144','136','181','173','178'];

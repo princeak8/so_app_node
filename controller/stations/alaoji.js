@@ -1,6 +1,8 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
+const topic = 'alaoji/tr';
+
 const preparedData = () => {
     return {
         id: "alaoji",
@@ -33,36 +35,57 @@ const preparedData = () => {
                 id: "a2k",
                 td: transmissionData(generateValues())
             },
-            //Added by me
             {
-                id: "a1b",
+                id: "a23w",
                 td: transmissionData(generateValues())
             },
             {
-                id: "a2b",
+                id: "a24w",
                 td: transmissionData(generateValues())
             },
             {
-                id: "a1o",
+                id: "a23b",
                 td: transmissionData(generateValues())
             },
             {
-                id: "a2o",
+                id: "a26b",
                 td: transmissionData(generateValues())
             },
         ]
     }
 };
 
-export const alaoji = (wss) => {
-    setInterval(function(){
-        wss.clients.forEach((client) => {
+export const alaoji = (wss, client) => {
+    client.on('connect', function () {
+        //subscribe to topic
+
+        client.subscribe(topic, function (err) {
+            if (err) {
+                console.log(err);
+            }
+        })
+        setInterval(function(){
+            const val = preparedData();
+            client.publish(topic, JSON.stringify(val));
+            
+            
+        }, 30000);
+    })
+
+    client.on('error', function (error) {
+        console.log("failed to connect: "+error);
+    })
+
+    client.on('message', async function (topic, message) {
+        //console.log('message from mqtt: ', message.toString());
+        wss.clients.forEach((wsClient) => {
             //console.log('client ready');
-            if (client.readyState === WebSocket.OPEN) {
+            if (wsClient.readyState === WebSocket.OPEN) {
                 //wsData = [data];
-                const vals = preparedData();
-                client.send(JSON.stringify(vals));
+                //const vals = preparedData();
+                const vals = message.toString();
+                wsClient.send(message.toString());
             }
         });
-    }, 30000);
+    })
 };
