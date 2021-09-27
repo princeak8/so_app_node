@@ -8,27 +8,27 @@ const preparedData = () => {
         lines: [
             {
                 id: "j1h",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "j2h",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "h3g",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "h2a",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "h1w",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "h7v",
-                td
+                td: transmissionData(generateValues())
             }
         ]
     }

@@ -9,19 +9,19 @@ const preparedData = () => {
             {
                 id: "m2s",
                 connectionRoot: false,
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "s1e",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "a1s",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "a2s",
-                td
+                td: transmissionData(generateValues())
             }
         ]
     }

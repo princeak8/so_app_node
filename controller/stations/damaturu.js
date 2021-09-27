@@ -8,11 +8,11 @@ const preparedData = () => {
         lines: [
             {
                 id: "e1d",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "d1l",
-                td
+                td: transmissionData(generateValues())
             }
         ]
     }
