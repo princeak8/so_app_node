@@ -1,6 +1,5 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
-const td = transmissionData(generateValues());
 
 const preparedData = () => {   
      return {
@@ -8,7 +7,7 @@ const preparedData = () => {
         lines: [
             {
                 id: "mk21p",
-                td
+                td: transmissionData(generateValues())
             }
         ]
     }

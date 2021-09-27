@@ -8,50 +8,50 @@ const preparedData = () => {
         lines: [
             {
                 id: "v7b",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "b5m",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "b6n",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "g3b",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "s3b",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "s4b",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "s5b",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "b11j",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "b12j",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "b1t",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "b2t",
-                td
+                td: transmissionData(generateValues())
             },{
                 id: "b3d",
-                td
+                td: transmissionData(generateValues())
             }
         ]
     }
@@ -64,6 +64,7 @@ export const benin = (wss) => {
             if (client.readyState === WebSocket.OPEN) {
                 //wsData = [data];
                 const vals = preparedData();
+                //console.log('data', vals);
                 client.send(JSON.stringify(vals));
             }
         });

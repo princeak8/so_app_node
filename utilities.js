@@ -14,8 +14,8 @@ export const transmissionData = (vals) => {
     var {volt, current, power, mvar} = vals;
     return {
         mw: power,
-        a: current,
-        v: volt,
+        A: current,
+        V: volt,
         mvar: mvar
     }
 };

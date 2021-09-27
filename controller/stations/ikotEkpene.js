@@ -8,51 +8,51 @@ const preparedData = () => {
         lines: [
             {
                 id: "a1k",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "a2k",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "d1k",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "d2k",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "k1u",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "k2u",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "k3u",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "k4u",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "s1k",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "s2k",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "f5k",
-                td
+                td: transmissionData(generateValues())
             },
             {
                 id: "f6k",
-                td
+                td: transmissionData(generateValues())
             }
         ]
     }
