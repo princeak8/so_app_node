@@ -3,37 +3,61 @@ const jwt = require('jsonwebtoken');
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
+const topic = 'adiabor/tr';
+
 const preparedData = () => {
     return {
-        "name": "Adiabor TS",
+        "id": "adiabor",
         "lines": [
             {
-                "name": "d1b",
+                "id": "d1b",
                 "td":  transmissionData(generateValues())
             },
             {
-                "name": "d2b",
+                "id": "d2b",
                 "td": transmissionData(generateValues())
             },
             {
-                "name": "d22t",
+                "id": "d22t",
                 "td": transmissionData(generateValues())
             }
         ]
     }
 };
 
-export const adiabor = (wss) => {
-    setInterval(function(){
-        wss.clients.forEach((client) => {
+export const adiabor = (wss, client) => {
+    client.on('connect', function () {
+        //subscribe to topic
+
+        client.subscribe(topic, function (err) {
+            if (err) {
+                console.log(err);
+            }
+        })
+        setInterval(function(){
+            const val = preparedData();
+            client.publish(topic, JSON.stringify(val));
+            
+            
+        }, 30000);
+    })
+
+    client.on('error', function (error) {
+        console.log("failed to connect: "+error);
+    })
+
+    client.on('message', async function (topic, message) {
+        wss.clients.forEach((wsClient) => {
             //console.log('client ready');
-            if (client.readyState === WebSocket.OPEN) {
+            if (wsClient.readyState === WebSocket.OPEN) {
                 //wsData = [data];
-                const vals = preparedData();
-                client.send(JSON.stringify(vals));
+                //const vals = preparedData();
+                const vals = message.toString();
+                //const vals = JSON.parse(message);
+                wsClient.send(message.toString());
             }
         });
-    }, 30000);
+    })
 };
 
 //export default send;

@@ -105,14 +105,14 @@ export const ajah = (wss, client) => {
     })
 
     client.on('message', async function (topic, message) {
-        console.log('message from mqtt: ', message.toString());
+        //console.log('message from mqtt: ', message.toString());
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
             if (wsClient.readyState === WebSocket.OPEN) {
                 //wsData = [data];
                 //const vals = preparedData();
-                const vals = message.toString();
-                wsClient.send(JSON.stringify(vals));
+                const vals = preparedData();
+                wsClient.send(message.toString());
             }
         });
     })
