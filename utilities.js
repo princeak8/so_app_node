@@ -10,8 +10,12 @@ exports.generateValues = () => {
     return {volt: parseInt(volt), current: parseInt(current), power: parseInt(power), mvar: parseInt(mvar)};
 }
 
-export const transmissionData = (vals) => {
-    var {volt, current, power, mvar} = vals;
+export const transmissionData = (vals = '') => {
+    if(vals == ''){
+        var volt = ''; var current = ''; var power = ''; var mvar = '';
+    }else{
+        var {volt, current, power, mvar} = vals;
+    }
     return {
         mw: power,
         A: current,
