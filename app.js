@@ -58,8 +58,8 @@ wss.on('connection', (ws) => {
 
 const options={
     clientId:"mqttjs01",
-    username:"akalo",
-    password:"akalo88",
+    username:process.env.MQTT_USER,
+    password:process.env.MQTT_PASS,
     clean:true
 };
 //host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
