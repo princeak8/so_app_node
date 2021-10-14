@@ -5,8 +5,9 @@ import {
     onitsha, oshogbo, owerri, parasEnergyGs,phMain, riversIppGs, sagamu, sakete, sapeleGs, sapeleNippGs, shiroroGs, transamadiGs, ugwuaji, yenegoa, yola
 } from './stations/index';
 
+//const send = (wss, host, options) => {
 const send = (wss, client) => {
-    adiabor(wss, client);
+    // adiabor(wss, client);
     // aba(wss, client);
     // afamIv_vGs(wss, client);
     // afamViGs(wss, client);
@@ -39,7 +40,10 @@ const send = (wss, client) => {
     // ikejaWest(wss, client);
     // ikorodu(wss, client);
     // ikotAbasi(wss, client);
-    // ikotEkpene(wss, client);
+
+    //ikotEkpene(wss, host, options);
+    ikotEkpene(wss, client);
+
     // itu(wss, client);
     // jebba(wss, client);
     // jebbaGs(wss, client);
@@ -56,7 +60,10 @@ const send = (wss, client) => {
     // molai(wss, client);
     // newHaven(wss, client);
     // odogunyan(wss, client);
-    // odukpaniGs(wss, client);
+
+    //odukpaniGs(wss, host, options);
+    odukpaniGs(wss, client);
+
     // okearo(wss, client);
     // okpaiGs(wss, client);
     // olorunsogoPhase1Gs(wss, client);

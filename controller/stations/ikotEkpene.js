@@ -1,7 +1,8 @@
 var WebSocket = require('ws');
+var mqtt = require('mqtt');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'ikotEkpene/tr';
+const topic = 'ikotekpene/tv';
 
 const preparedData = () => {    
     return {
@@ -59,36 +60,43 @@ const preparedData = () => {
     }
 }
 
+//export const ikotEkpene = (wss, host, options) => {
+    //var client  = mqtt.connect(host, options);
 export const ikotEkpene = (wss, client) => {
+    
     client.on('connect', function () {
-        //subscribe to topic
+        //console.log('connected to mqtt IkotEkpene');
 
         client.subscribe(topic, function (err) {
             if (err) {
                 console.log(err);
             }
         })
-        setInterval(function(){
-            const val = preparedData();
-            client.publish(topic, JSON.stringify(val));
+        // setInterval(function(){
+        //     const val = preparedData();
+        //     client.publish(topic, JSON.stringify(val));
             
             
-        }, 30000);
+        // }, 30000);
     })
 
     client.on('error', function (error) {
-        console.log("failed to connect: "+error);
+        console.log("failed to connect IkotEkpene: "+error);
     })
 
-    client.on('message', async function (topic, message) {
-        //console.log('message from mqtt: ', message.toString());
+    client.on('message', async function (sentTopic, message) {
+        //console.log('message from mqtt: ', sentTopic);
+        //console.log(wss);
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN) {
+            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
+                //console.log('IkotEkpene message sent out: ', sentTopic);
                 //wsData = [data];
-                //const vals = preparedData();
+                //const valss = preparedData();
+                //console.log(valss);
                 const vals = message.toString();
-                wsClient.send(message.toString());
+                //console.log(vals);
+                wsClient.send(vals);
             }
         });
     })

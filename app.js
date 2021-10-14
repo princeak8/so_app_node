@@ -67,6 +67,7 @@ const host = "mqtt://127.0.0.1";
 var client  = mqtt.connect(host, options);
 
 StationsController(wss, client);
+//StationsController(wss, host, options);
 
 // setInterval(function(){
 //     wss.clients.forEach((client) => {
