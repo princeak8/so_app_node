@@ -3,6 +3,7 @@ const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
 
 const UsersController = require('../controller/users');
+const mqttController = require('../controller/mqtt');
 
 router.post('/register', UsersController.register);
 
@@ -13,5 +14,7 @@ router.get('/', checkAuth, (req, res)=>{
         message: 'Welcome to the home page'
     })
 });
+
+router.get('/get_client', mqttController.test);
 
 module.exports = router;

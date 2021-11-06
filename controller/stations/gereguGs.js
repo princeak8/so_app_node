@@ -28,12 +28,12 @@ export const gereguGs = (wss, client) => {
                 console.log(err);
             }
         })
-        setInterval(function(){
-            const val = preparedData();
-            client.publish(topic, JSON.stringify(val));
+        // setInterval(function(){
+        //     const val = preparedData();
+        //     client.publish(topic, JSON.stringify(val));
             
             
-        }, 30000);
+        // }, 30000);
     })
 
     client.on('error', function (error) {

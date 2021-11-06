@@ -1,4 +1,5 @@
 const express = require('express');
+var session = require('express-session');
 var cors = require("cors");
 var bodyParser = require("body-parser");
 const bcrypt = require('bcrypt');
@@ -16,11 +17,30 @@ const ConnectionsController = require('./controller/connections');
 //const StationsController = require('./controller/stations');
 import StationsController from './controller/stations';
 
+const options={
+    clientId:"mqttjs01",
+    username:process.env.MQTT_USER,
+    password:process.env.MQTT_PASS,
+    clean:true
+};
+//host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
+const host = "mqtt://127.0.0.1";
+var client  = mqtt.connect(host, options);
+
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
+
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    client : "host"
+  })
+);
 
 app.use('/', routes);
 
@@ -56,15 +76,7 @@ wss.on('connection', (ws) => {
     ws.send('Welcome to the chat, enjoy :)');
 });
 
-const options={
-    clientId:"mqttjs01",
-    username:process.env.MQTT_USER,
-    password:process.env.MQTT_PASS,
-    clean:true
-};
-//host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
-const host = "mqtt://127.0.0.1";
-var client  = mqtt.connect(host, options);
+
 
 StationsController(wss, client);
 //StationsController(wss, host, options);

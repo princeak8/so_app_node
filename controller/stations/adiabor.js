@@ -67,12 +67,12 @@ export const adiabor = (wss, client) => {
                 console.log(ncTopic+' error: '+err);
             }
         })
-        // setInterval(function(){
-        //     const val = preparedData();
-        //     client.publish(topic, JSON.stringify(val));
+        setInterval(function(){
+            const val = preparedData();
+            client.publish(ncTopic, 'nc');
             
             
-        // }, 30000);
+        }, 100000);
     })
     // var vals = preparedData();
     // vals['nc'] = true;
