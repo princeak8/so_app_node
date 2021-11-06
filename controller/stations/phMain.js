@@ -1,7 +1,8 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'phMain/tr';
+const topic = 'phmains/tv';
+const ncTopic = 'phmains/status';
 
 const preparedData = () => {    
     return {
@@ -39,6 +40,33 @@ const preparedData = () => {
     }
 }
 
+const ncData = () => {
+    return {
+        id: "odukpaniGs",
+        "nc": true,
+        lines: [
+            {
+                id: "d1b",
+                td: transmissionData()
+            },
+            {
+                id: "d2b",
+                td: transmissionData()
+            },
+            {
+                id: "d1k",
+                td: transmissionData()
+            },
+            {
+                id: "d2k",
+                td: transmissionData()
+            }
+        ]
+    }
+}
+
+var lastData = '';
+
 export const phMain = (wss, client) => {
     client.on('connect', function () {
         //subscribe to topic
@@ -48,28 +76,42 @@ export const phMain = (wss, client) => {
                 console.log(err);
             }
         })
-        setInterval(function(){
-            const val = preparedData();
-            client.publish(topic, JSON.stringify(val));
+        // setInterval(function(){
+        //     const val = preparedData();
+        //     client.publish(topic, JSON.stringify(val));
             
             
-        }, 30000);
+        // }, 30000);
     })
 
     client.on('error', function (error) {
         console.log("failed to connect: "+error);
     })
 
-    client.on('message', async function (topic, message) {
-        //console.log('message from mqtt: ', message.toString());
+    client.on('message', async function (sentTopic, message) {
+        //console.log('message from phmain', message.toString())
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN) {
-                //wsData = [data];
-                //const vals = preparedData();
+            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
+                //console.log('message sent from phmain', message.toString())
+                message = sanitizeData(message, sentTopic);
                 const vals = message.toString();
                 wsClient.send(message.toString());
             }
         });
     })
 };
+
+const sanitizeData = (message, topic) => {
+    if(topic == ncTopic) {
+        if(lastData == '') {
+            message = ncData;
+        }else{
+            lastData["nc"] = true;
+            message = lastData;
+        }
+    }else{
+        lastData = message;
+    }
+    return message;
+}

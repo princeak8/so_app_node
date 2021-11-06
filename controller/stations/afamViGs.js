@@ -1,11 +1,12 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'afamViGs/tr';
+const topic = 'afam6ts/tv';
+const ncTopic = 'afam6ts/status';
 
 const preparedData = () => {
     return {
-        "id": "afamViGs",
+        "id": "afam6ts",
         "lines": [
             {
                 "id": "f6k",
@@ -23,6 +24,14 @@ const preparedData = () => {
                 "id": "f2a",
                 "td": transmissionData(generateValues())
             },
+            {
+                "id": "ada200",
+                "td": transmissionData(generateValues())
+            },
+            {
+                "id": "ada200",
+                "td": transmissionData(generateValues())
+            },
         ]
     }
 };
@@ -36,12 +45,12 @@ export const afamViGs = (wss, client) => {
                 console.log(err);
             }
         })
-        setInterval(function(){
-            const val = preparedData();
-            client.publish(topic, JSON.stringify(val));
+        // setInterval(function(){
+        //     const val = preparedData();
+        //     client.publish(topic, JSON.stringify(val));
             
             
-        }, 30000);
+        // }, 30000);
     })
 
     client.on('error', function (error) {

@@ -10,7 +10,7 @@ const send = (wss, client) => {
     // adiabor(wss, client);
     // aba(wss, client);
     // afamIv_vGs(wss, client);
-    // afamViGs(wss, client);
+    afamViGs(wss, client);
     // ahaoda(wss, client);
     // ajah(wss, client);
     // ajaokuta(wss, client);
@@ -73,7 +73,7 @@ const send = (wss, client) => {
     // oshogbo(wss, client);
     // owerri(wss, client);
     // parasEnergyGs(wss, client);
-    // phMain(wss, client);
+    phMain(wss, client);
     // riversIppGs(wss, client);
     // sagamu(wss, client);
     // sakete(wss, client);
