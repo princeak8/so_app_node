@@ -1,8 +1,8 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'lokoja/tv';
-const ncTopic = 'odukpanits/status';
+const topic = 'lokojats/tv';
+const ncTopic = 'lokojats/status';
 
 const preparedData = () => {    
     return {

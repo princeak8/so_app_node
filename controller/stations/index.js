@@ -20,6 +20,7 @@ export * from './damaturu';
 export * from './deltaGs';
 export * from './egbinGs';
 export * from './eket';
+export * from './ekim';
 export * from './fakun';
 export * from './ganmo';
 export * from './gbarainGs';

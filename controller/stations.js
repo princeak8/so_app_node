@@ -1,6 +1,6 @@
 import {
     adiabor, aba, afamIv_vGs, afamViGs, ahaoda, ajah, ajaokuta, akangba, aladja, alagbon, alaoji, alaojiGs, asaba, ayade, azuraIppGs, benin, biu, dadinKowaGs, damaturu, 
-    deltaGs, egbinGs, eket, fakun, ganmo, gbarainGs, gereguGs, gombe, gwagwalada, ibomGs, ihovborNippGs, ikejaWest, ikorodu, ikotAbasi, ikotEkpene, itu, jebba, jebbaGs, jos, 
+    deltaGs, egbinGs, eket, ekim, fakun, ganmo, gbarainGs, gereguGs, gombe, gwagwalada, ibomGs, ihovborNippGs, ikejaWest, ikorodu, ikotAbasi, ikotEkpene, itu, jebba, jebbaGs, jos, 
     kaduna, kainji, kainjiGs, kano, katampe, kebbi, lekki, lokoja, markudi, molai, newHaven, odogunyan, odukpaniGs, okearo, okpaiGs, olorunsogoPhase1Gs, omokuGs, omotoshoPhase1Gs, 
     onitsha, oshogbo, owerri, parasEnergyGs,phMain, riversIppGs, sagamu, sakete, sapeleGs, sapeleNippGs, shiroroGs, transamadiGs, ugwuaji, yenegoa, yola
 } from './stations/index';
@@ -18,7 +18,7 @@ const send = (wss, client) => {
     // aladja(wss, client);
     // alagbon(wss, client);
     // alaoji(wss, client);
-    // alaojiGs(wss, client);
+    alaojiGs(wss, client);
     // asaba(wss, client);
     // ayade(wss, client);
     // azuraIppGs(wss, client);
@@ -28,13 +28,14 @@ const send = (wss, client) => {
     // damaturu(wss, client);
     // deltaGs(wss, client);
     // egbinGs(wss, client);
-    // eket(wss, client);
+    eket(wss, client);
+    ekim(wss, client);
     // fakun(wss, client);
     // ganmo(wss, client);
     // gbarainGs(wss, client);
     gereguGs(wss, client);
     // gombe(wss, client);
-    // gwagwalada(wss, client);
+    gwagwalada(wss, client);
     // ibomGs(wss, client);
     // ihovborNippGs(wss, client);
     // ikejaWest(wss, client);
