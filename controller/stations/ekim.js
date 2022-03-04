@@ -1,23 +1,15 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'eketts/tv';
-const ncTopic = 'eketts/status';
+const topic = 'ekimts/tv';
+const ncTopic = 'ekimts/status';
 
 const preparedData = () => {    
     return {
-        id: "eket",
+        id: "ekim",
         lines: [
             {
-                id: "e22t",
-                td: transmissionData(generateValues())
-            },
-            {
-                id: "e21m",
-                td: transmissionData(generateValues())
-            },
-            {
-                id: "e22m",
+                id: "ek1m",
                 td: transmissionData(generateValues())
             }
         ]
@@ -26,14 +18,14 @@ const preparedData = () => {
 
 const ncData = () => {
     return {
-        id: "eket",
+        id: "ekim",
         "nc": true,
     }
 }
 
 var lastData = '';
 
-export const eket = (wss, client) => {
+export const ekim = (wss, client) => {
     client.on('connect', function () {
         //subscribe to topic
 

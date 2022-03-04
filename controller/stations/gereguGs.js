@@ -2,7 +2,7 @@ var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
 const topic = 'gereguGs/tv';
-const ncTopic = 'phmains/tv';
+const ncTopic = 'gereguGs/status';
 
 const preparedData = () => {    
     return {

@@ -54,7 +54,7 @@ const ncData = () => {
     }
 }
 
-const lastData = ''; 
+var lastData = ''; 
 
 // export const odukpaniGs = (wss, host, options) => {
 //     var client  = mqtt.connect(host, options);
