@@ -1,7 +1,8 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'gereguGs/tr';
+const topic = 'gereguGs/tv';
+const ncTopic = 'phmains/tv';
 
 const preparedData = () => {    
     return {
@@ -18,6 +19,25 @@ const preparedData = () => {
         ]
     }
 }
+
+const ncData = () => {
+    return {
+        id: "gereguGs",
+        "nc": true,
+        lines: [
+            {
+                id: "r1j",
+                td: transmissionData()
+            },
+            {
+                id: "r2j",
+                td: transmissionData()
+            }
+        ]
+    }
+}
+
+var lastData = ''; 
 
 export const gereguGs = (wss, client) => {
     client.on('connect', function () {
@@ -40,16 +60,30 @@ export const gereguGs = (wss, client) => {
         console.log("failed to connect: "+error);
     })
 
-    client.on('message', async function (topic, message) {
-        //console.log('message from mqtt: ', message.toString());
+    client.on('message', async function (sentTopic, message) {
+        //console.log('message from phmain', message.toString())
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN) {
-                //wsData = [data];
-                //const vals = preparedData();
+            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
+                //console.log('message sent from phmain', message.toString())
+                message = sanitizeData(message, sentTopic);
                 const vals = message.toString();
                 wsClient.send(message.toString());
             }
         });
     })
 };
+
+const sanitizeData = (message, topic) => {
+    if(topic == ncTopic) {
+        if(lastData == '') {
+            message = ncData;
+        }else{
+            lastData["nc"] = true;
+            message = lastData;
+        }
+    }else{
+        lastData = message;
+    }
+    return message;
+}

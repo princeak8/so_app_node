@@ -114,18 +114,3 @@ const sanitizeData = (message, topic) => {
     }
     return message;
 }
-
-const ncTopic = 'phmains/status';
-const sanitizeData = (message, topic) => {
-    if(topic == ncTopic) {
-        if(lastData == '') {
-            message = ncData;
-        }else{
-            lastData["nc"] = true;
-            message = lastData;
-        }
-    }else{
-        lastData = message;
-    }
-    return message;
-}
