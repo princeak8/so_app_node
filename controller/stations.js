@@ -19,12 +19,12 @@ const send = (wss, client) => {
     // alagbon(wss, client);
     // alaoji(wss, client);
     alaojiGs(wss, client);
-    // asaba(wss, client);
+    asaba(wss, client);
     // ayade(wss, client);
     // azuraIppGs(wss, client);
     // benin(wss, client);
     // biu(wss, client);
-    // dadinKowaGs(wss, client);
+    dadinKowaGs(wss, client);
     // damaturu(wss, client);
     // deltaGs(wss, client);
     // egbinGs(wss, client);

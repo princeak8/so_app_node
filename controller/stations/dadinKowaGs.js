@@ -1,7 +1,7 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'dadinKowaGs/tr';
+const topic = 'dadinkowags/tv';
 
 const preparedData = () => {
     return {
@@ -19,6 +19,15 @@ const preparedData = () => {
         ]
     }
 }
+
+const ncData = () => {
+    return {
+        id: "ekim",
+        "nc": true,
+    }
+}
+
+var lastData = '';
 
 export const dadinKowaGs = (wss, client) => {
     client.on('connect', function () {
@@ -41,16 +50,31 @@ export const dadinKowaGs = (wss, client) => {
         console.log("failed to connect: "+error);
     })
 
-    client.on('message', async function (topic, message) {
+    client.on('message', async function (sentTopic, message) {
         //console.log('message from mqtt: ', message.toString());
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN) {
-                //wsData = [data];
-                //const vals = preparedData();
+            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
+                //console.log('dadin kowa message sent out: ', sentTopic);
+                message = sanitizeData(message, sentTopic);
                 const vals = message.toString();
-                wsClient.send(message.toString());
+                // console.log(vals);
+                wsClient.send(vals);
             }
         });
     })
 };
+
+const sanitizeData = (message, topic) => {
+    // if(topic == ncTopic) {
+    //     if(lastData == '') {
+    //         message = ncData;
+    //     }else{
+    //         lastData["nc"] = true;
+    //         message = lastData;
+    //     }
+    // }else{
+    //     lastData = message;
+    // }
+    return message;
+}
