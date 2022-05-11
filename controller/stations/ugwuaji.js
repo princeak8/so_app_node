@@ -43,6 +43,13 @@ const preparedData = () => {
     }
 }
 
+const ncData = () => {
+    return {
+        id: "ekim",
+        "nc": true,
+    }
+}
+
 export const ugwuaji = (wss, client) => {
     client.on('connect', function () {
         //subscribe to topic
