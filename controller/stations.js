@@ -7,10 +7,32 @@ import {
 
 //const send = (wss, host, options) => {
 const send = (wss, client) => {
+    alaojiGs(wss, client);
+    afamViGs(wss, client);
+    dadinKowaGs(wss, client);
+    eket(wss, client);
+    ekim(wss, client);
+    fakun(wss, client);
+    gereguGs(wss, client);
+    gwagwalada(wss, client);
+    ikotEkpene(wss, client);
+    lokoja(wss, client);
+    markudi(wss, client);
+    odukpaniGs(wss, client);
+    phMain(wss, client);
+    ugwuaji(wss, client);
+
+    /* MOVED TO AWS */
+    // asaba(wss, client);
+    // deltaGs(wss, client);
+
+
+
+
     // adiabor(wss, client);
     // aba(wss, client);
     // afamIv_vGs(wss, client);
-    afamViGs(wss, client);
+    
     // ahaoda(wss, client);
     // ajah(wss, client);
     // ajaokuta(wss, client);
@@ -18,24 +40,21 @@ const send = (wss, client) => {
     // aladja(wss, client);
     // alagbon(wss, client);
     // alaoji(wss, client);
-    alaojiGs(wss, client);
-    asaba(wss, client);
+    
     // ayade(wss, client);
     // azuraIppGs(wss, client);
     // benin(wss, client);
     // biu(wss, client);
-    dadinKowaGs(wss, client);
+    
     // damaturu(wss, client);
-    // deltaGs(wss, client);
+    
     // egbinGs(wss, client);
-    eket(wss, client);
-    ekim(wss, client);
-    fakun(wss, client);
+    
     // ganmo(wss, client);
     // gbarainGs(wss, client);
-    gereguGs(wss, client);
+    
     // gombe(wss, client);
-    gwagwalada(wss, client);
+    
     // ibomGs(wss, client);
     // ihovborNippGs(wss, client);
     // ikejaWest(wss, client);
@@ -43,7 +62,7 @@ const send = (wss, client) => {
     // ikotAbasi(wss, client);
 
     //ikotEkpene(wss, host, options);
-    ikotEkpene(wss, client);
+    
 
     // itu(wss, client);
     // jebba(wss, client);
@@ -56,14 +75,13 @@ const send = (wss, client) => {
     // katampe(wss, client);
     // kebbi(wss, client);
     // lekki(wss, client);
-    lokoja(wss, client);
-    markudi(wss, client);
+    
     // molai(wss, client);
     // newHaven(wss, client);
     // odogunyan(wss, client);
 
     //odukpaniGs(wss, host, options);
-    odukpaniGs(wss, client);
+    
 
     // okearo(wss, client);
     // okpaiGs(wss, client);
@@ -74,7 +92,7 @@ const send = (wss, client) => {
     // oshogbo(wss, client);
     // owerri(wss, client);
     // parasEnergyGs(wss, client);
-    phMain(wss, client);
+    
     // riversIppGs(wss, client);
     // sagamu(wss, client);
     // sakete(wss, client);
@@ -82,7 +100,7 @@ const send = (wss, client) => {
     // sapeleNippGs(wss, client);
     // shiroroGs(wss, client);
     // transamadiGs(wss, client);
-    ugwuaji(wss, client);
+    
     // yenegoa(wss, client);
     // yola(wss, client);
 }

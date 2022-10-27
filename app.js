@@ -16,17 +16,7 @@ const UsersController = require('./controller/users');
 const ConnectionsController = require('./controller/connections');
 //const StationsController = require('./controller/stations');
 import StationsController from './controller/stations';
-
-const options={
-    clientId:"mqttjs01",
-    username:process.env.MQTT_USER,
-    password:process.env.MQTT_PASS,
-    clean:true
-};
-//host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
-const host = "mqtt://102.89.11.82";
-var client  = mqtt.connect(host, options);
-
+import Stations2Controller from './controller/stations2';
 
 const app = express();
 
@@ -76,9 +66,28 @@ wss.on('connection', (ws) => {
     ws.send('Welcome to the chat, enjoy :)');
 });
 
+const options={
+    clientId:"mqttjs01",
+    username:process.env.MQTT_USER,
+    password:process.env.MQTT_PASS,
+    clean:true
+};
 
+const options2={
+    clientId:"mqttjs02",
+    username:process.env.MQTT_AWS_USER,
+    password:process.env.MQTT_AWS_PASS,
+    clean:true
+};
+//host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
+const host = process.env.MQTT_HOST;
+var client  = mqtt.connect(host, options);
+
+const host2 = process.env.MQTT_AWS_HOST;
+var client2  = mqtt.connect(host2, options2);
 
 StationsController(wss, client);
+Stations2Controller(wss, client);
 //StationsController(wss, host, options);
 
 // setInterval(function(){
