@@ -24,7 +24,7 @@ const options={
     clean:true
 };
 //host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
-const host = "mqtt://127.0.0.1";
+const host = "mqtt://102.89.11.82";
 var client  = mqtt.connect(host, options);
 
 

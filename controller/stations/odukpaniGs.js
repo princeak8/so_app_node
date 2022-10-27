@@ -60,19 +60,16 @@ var lastData = '';
 //     var client  = mqtt.connect(host, options);
 export const odukpaniGs = (wss, client) => {
     client.on('connect', function () {
-        console.log('connected to mqtt Odukpani');
 
         client.subscribe(topic, function (err) {
             if (err) {
                 console.log(err);
             }
         })
-        setInterval(function(){
-            const val = preparedData();
-            client.publish(topic, JSON.stringify(val));
-            
-            
-        }, 30000);
+        // setInterval(function(){
+        //     const val = preparedData();
+        //     client.publish(topic, JSON.stringify(val));
+        // }, 30000);
     })
 
     client.on('error', function (error) {
@@ -80,7 +77,7 @@ export const odukpaniGs = (wss, client) => {
     })
 
     client.on('message', async function (sentTopic, message) {
-        console.log('message from mqtt: ', sentTopic+' '+topic);
+        // console.log('message from mqtt: ', sentTopic+' '+topic);
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
             if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
