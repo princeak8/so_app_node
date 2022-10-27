@@ -30,7 +30,7 @@ const send = (wss, client) => {
     // egbinGs(wss, client);
     eket(wss, client);
     ekim(wss, client);
-    // fakun(wss, client);
+    fakun(wss, client);
     // ganmo(wss, client);
     // gbarainGs(wss, client);
     gereguGs(wss, client);
@@ -57,7 +57,7 @@ const send = (wss, client) => {
     // kebbi(wss, client);
     // lekki(wss, client);
     lokoja(wss, client);
-    // markudi(wss, client);
+    markudi(wss, client);
     // molai(wss, client);
     // newHaven(wss, client);
     // odogunyan(wss, client);
@@ -82,7 +82,7 @@ const send = (wss, client) => {
     // sapeleNippGs(wss, client);
     // shiroroGs(wss, client);
     // transamadiGs(wss, client);
-    // ugwuaji(wss, client);
+    ugwuaji(wss, client);
     // yenegoa(wss, client);
     // yola(wss, client);
 }
