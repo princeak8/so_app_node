@@ -87,7 +87,10 @@ const host2 = process.env.MQTT_AWS_HOST;
 var client2  = mqtt.connect(host2, options2);
 
 StationsController(wss, client);
-Stations2Controller(wss, client);
+client.on('connect', function () {
+    console.log('connected');
+});
+Stations2Controller(wss, client2);
 //StationsController(wss, host, options);
 
 // setInterval(function(){
