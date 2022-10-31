@@ -1,7 +1,8 @@
 var WebSocket = require('ws');
 const { transmissionData, generateValues } = require('../../utilities');
 
-const topic = 'kainjiTs/tr';
+const topic = 'kainjits/tv';
+const ncTopic = 'kainjits/status';
 
 const preparedData = () => {    
     return {
@@ -36,6 +37,13 @@ const preparedData = () => {
     }
 }
 
+const ncData = () => {
+    return {
+        id: "jebbaTs",
+        "nc": true,
+    }
+}
+
 export const kainji = (wss, client) => {
     client.on('connect', function () {
         //subscribe to topic
@@ -45,28 +53,44 @@ export const kainji = (wss, client) => {
                 console.log(err);
             }
         })
-        setInterval(function(){
-            const val = preparedData();
-            client.publish(topic, JSON.stringify(val));
-            
-            
-        }, 30000);
+        // setInterval(function(){
+        //     const val = preparedData();
+        //     client.publish(topic, JSON.stringify(val)); 
+        // }, 30000);
     })
 
     client.on('error', function (error) {
         console.log("failed to connect: "+error);
     })
 
-    client.on('message', async function (topic, message) {
-        //console.log('message from mqtt: ', message.toString());
+    var topics = [];
+    client.on('message', async function (sentTopic, message) {
+        if(!topics.includes(sentTopic)) topics.push(sentTopic);
+        console.log(topics);
+        // console.log('message from mqtt: ', message.toString());
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN) {
+            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
+                message = sanitizeData(message, sentTopic);
                 //wsData = [data];
-                //const vals = preparedData();
                 const vals = message.toString();
-                wsClient.send(message.toString());
+                // console.log(vals);
+                wsClient.send(vals);
             }
         });
     })
 };
+
+const sanitizeData = (message, topic) => {
+    // if(topic == ncTopic) {
+    //     if(lastData == '') {
+    //         message = ncData;
+    //     }else{
+    //         lastData["nc"] = true;
+    //         message = lastData;
+    //     }
+    // }else{
+    //     lastData = message;
+    // }
+    return message;
+}

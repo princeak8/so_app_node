@@ -69,15 +69,18 @@ export const ugwuaji = (wss, client) => {
         console.log("failed to connect: "+error);
     })
 
+    var topics = [];
     client.on('message', async function (sentTopic, message) {
+        if(!topics.includes(sentTopic)) topics.push(sentTopic);
+        console.log(topics);
         // console.log('message from mqtt: ', message.toString());
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
             if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
-                console.log('ugwuaji message sent out: ', sentTopic);
+                // console.log('ugwuaji message sent out: ', sentTopic);
                 message = sanitizeData(message, sentTopic);
                 const vals = message.toString();
-                console.log(vals);
+                // console.log(vals);
                 wsClient.send(vals);
             }
         });

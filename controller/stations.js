@@ -25,7 +25,8 @@ const send = (wss, client) => {
     /* MOVED TO AWS */
     // asaba(wss, client);
     // deltaGs(wss, client);
-
+    // jebbaGs(wss, client);
+    // kainji(wss, client);
 
 
 
@@ -66,10 +67,10 @@ const send = (wss, client) => {
 
     // itu(wss, client);
     // jebba(wss, client);
-    // jebbaGs(wss, client);
+    
     // jos(wss, client);
     // kaduna(wss, client);
-    // kainji(wss, client);
+    
     // kainjiGs(wss, client);
     // kano(wss, client);
     // katampe(wss, client);
