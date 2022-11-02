@@ -1,5 +1,5 @@
 import {
-    asaba, deltaGs, jebbaGs, eket, ekim, kainji
+    asaba, deltaGs, jebbaGs, eket, ekim, kainji, ikotEkpene
 } from './stations/index';
 
 const send = (wss, client) => {
@@ -9,6 +9,7 @@ const send = (wss, client) => {
     // eket(wss, client);
     // ekim(wss, client);
     kainji(wss, client);
+    ikotEkpene(wss, client);
 }
 
 export default send;

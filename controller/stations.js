@@ -15,7 +15,6 @@ const send = (wss, client) => {
     fakun(wss, client);
     gereguGs(wss, client);
     gwagwalada(wss, client);
-    ikotEkpene(wss, client);
     lokoja(wss, client);
     markudi(wss, client);
     odukpaniGs(wss, client);

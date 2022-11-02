@@ -86,6 +86,7 @@ export const ikotEkpene = (wss, client) => {
 
     client.on('message', async function (sentTopic, message) {
         //console.log('message from mqtt: ', sentTopic);
+        // if(sentTopic=='ikotekpene/tv') console.log(message.toString())
         //console.log(wss);
         wss.clients.forEach((wsClient) => {
             //console.log('client ready');
