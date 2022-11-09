@@ -58,38 +58,18 @@ var lastData = '';
 
 // export const odukpaniGs = (wss, host, options) => {
 //     var client  = mqtt.connect(host, options);
-export const odukpaniGs = (wss, client) => {
-    client.on('connect', function () {
-
-        client.subscribe(topic, function (err) {
-            if (err) {
-                console.log(err);
-            }
-        })
-        // setInterval(function(){
-        //     const val = preparedData();
-        //     client.publish(topic, JSON.stringify(val));
-        // }, 30000);
-    })
-
-    client.on('error', function (error) {
-        console.log("failed to connect Odukpani: "+error);
-    })
-
-    client.on('message', async function (sentTopic, message) {
-        // console.log('message from mqtt: ', sentTopic+' '+topic);
-        wss.clients.forEach((wsClient) => {
-            //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
-                message = sanitizeData(message, sentTopic);
-                //console.log('Odukpani message sent out: ', sentTopic);
-                //wsData = [data];
-                //const vals = preparedData();
-                const vals = message.toString();
-                wsClient.send(message.toString());
-            }
-        });
-    })
+export const odukpaniGs = (wss, sentTopic, message) => {
+    //console.log('message from mqtt: ', message.toString());
+    wss.clients.forEach((wsClient) => {
+        //console.log('client ready');
+        if (wsClient.readyState === WebSocket.OPEN) {
+            message = sanitizeData(message, sentTopic);
+            //wsData = [data];
+            const vals = message.toString();
+            // console.log(vals);
+            wsClient.send(vals);
+        }
+    });
 };
 
 const sanitizeData = (message, topic) => {

@@ -67,50 +67,29 @@ const ncData = () => {
 
 var lastData = '';
 
-export const phMain = (wss, client) => {
-    client.on('connect', function () {
-        //subscribe to topic
-
-        client.subscribe(topic, function (err) {
-            if (err) {
-                console.log(err);
-            }
-        })
-        // setInterval(function(){
-        //     const val = preparedData();
-        //     client.publish(topic, JSON.stringify(val));
-            
-            
-        // }, 30000);
-    })
-
-    client.on('error', function (error) {
-        console.log("failed to connect: "+error);
-    })
-
-    client.on('message', async function (sentTopic, message) {
-        //console.log('message from phmain', message.toString())
-        wss.clients.forEach((wsClient) => {
-            //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
-                //console.log('message sent from phmain', message.toString())
-                message = sanitizeData(message, sentTopic);
-                const vals = message.toString();
-                wsClient.send(message.toString());
-            }
-        });
-    })
+export const phMain = (wss, sentTopic, message) => {
+    //console.log('message from mqtt: ', message.toString());
+    wss.clients.forEach((wsClient) => {
+        //console.log('client ready');
+        if (wsClient.readyState === WebSocket.OPEN) {
+            message = sanitizeData(message, sentTopic);
+            //wsData = [data];
+            const vals = message.toString();
+            // console.log(vals);
+            wsClient.send(vals);
+        }
+    });
 };
 const sanitizeData = (message, topic) => {
-    if(topic == ncTopic) {
-        if(lastData == '') {
-            message = ncData;
-        }else{
-            lastData["nc"] = true;
-            message = lastData;
-        }
-    }else{
-        lastData = message;
-    }
+    // if(topic == ncTopic) {
+    //     if(lastData == '') {
+    //         message = ncData;
+    //     }else{
+    //         lastData["nc"] = true;
+    //         message = lastData;
+    //     }
+    // }else{
+    //     lastData = message;
+    // }
     return message;
 }

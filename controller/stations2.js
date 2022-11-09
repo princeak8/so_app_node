@@ -1,15 +1,20 @@
 import {
-    asaba, deltaGs, jebbaGs, eket, ekim, kainji, ikotEkpene
+    asaba, afamViGs, deltaGs, jebbaGs, eket, ekim, kainji, ikotEkpene, okpaiGs, odukpaniGs, phMain
 } from './stations/index';
 
 const send = (wss, client) => {
-    asaba(wss, client);
-    deltaGs(wss, client);
-    jebbaGs(wss, client);
-    // eket(wss, client);
-    // ekim(wss, client);
-    kainji(wss, client);
-    ikotEkpene(wss, client);
+    client.on('message', async function (sentTopic, message) {
+        asaba(wss, sentTopic, message);
+        afamViGs(wss, sentTopic, message);
+        deltaGs(wss, sentTopic, message);
+        jebbaGs(wss, sentTopic, message);
+        okpaiGs(wss, sentTopic, message);
+        // ekim(wss, sentTopic, message);
+        kainji(wss, sentTopic, message);
+        ikotEkpene(wss, sentTopic, message);
+        odukpaniGs(wss, sentTopic, message);
+        phMain(wss, sentTopic, message);
+    });
 }
 
 export default send;

@@ -62,43 +62,30 @@ const preparedData = () => {
 
 //export const ikotEkpene = (wss, host, options) => {
     //var client  = mqtt.connect(host, options);
-export const ikotEkpene = (wss, client) => {
-    
-    client.on('connect', function () {
-        //console.log('connected to mqtt IkotEkpene');
-
-        client.subscribe(topic, function (err) {
-            if (err) {
-                console.log(err);
-            }
-        })
-        // setInterval(function(){
-        //     const val = preparedData();
-        //     client.publish(topic, JSON.stringify(val));
-            
-            
-        // }, 30000);
-    })
-
-    client.on('error', function (error) {
-        console.log("failed to connect IkotEkpene: "+error);
-    })
-
-    client.on('message', async function (sentTopic, message) {
-        //console.log('message from mqtt: ', sentTopic);
-        // if(sentTopic=='ikotekpene/tv') console.log(message.toString())
-        //console.log(wss);
-        wss.clients.forEach((wsClient) => {
-            //console.log('client ready');
-            if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
-                //console.log('IkotEkpene message sent out: ', sentTopic);
-                //wsData = [data];
-                //const valss = preparedData();
-                //console.log(valss);
-                const vals = message.toString();
-                //console.log(vals);
-                wsClient.send(vals);
-            }
-        });
-    })
+export const ikotEkpene = (wss, sentTopic, message) => {
+    //console.log('message from mqtt: ', message.toString());
+    wss.clients.forEach((wsClient) => {
+        //console.log('client ready');
+        if (wsClient.readyState === WebSocket.OPEN) {
+            message = sanitizeData(message, sentTopic);
+            //wsData = [data];
+            const vals = message.toString();
+            // console.log(vals);
+            wsClient.send(vals);
+        }
+    });
 };
+
+const sanitizeData = (message, topic) => {
+    // if(topic == ncTopic) {
+    //     if(lastData == '') {
+    //         message = ncData;
+    //     }else{
+    //         lastData["nc"] = true;
+    //         message = lastData;
+    //     }
+    // }else{
+    //     lastData = message;
+    // }
+    return message;
+}

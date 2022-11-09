@@ -7,61 +7,64 @@ import {
 
 //const send = (wss, host, options) => {
 const send = (wss, client) => {
-    alaojiGs(wss, client);
-    afamViGs(wss, client);
-    dadinKowaGs(wss, client);
-    eket(wss, client);
-    ekim(wss, client);
-    fakun(wss, client);
-    gereguGs(wss, client);
-    gwagwalada(wss, client);
-    lokoja(wss, client);
-    markudi(wss, client);
-    odukpaniGs(wss, client);
-    phMain(wss, client);
-    ugwuaji(wss, client);
+    client.on('message', async function (sentTopic, message) {
+        alaojiGs(wss, sentTopic, message);
+        dadinKowaGs(wss, sentTopic, message);
+        eket(wss, sentTopic, message);
+        ekim(wss, sentTopic, message);
+        fakun(wss, sentTopic, message);
+        gereguGs(wss, sentTopic, message);
+        gwagwalada(wss, sentTopic, message);
+        lokoja(wss, sentTopic, message);
+        markudi(wss, sentTopic, message);
+        ugwuaji(wss, sentTopic, message);
+    });
 
     /* MOVED TO AWS */
     // asaba(wss, client);
     // deltaGs(wss, client);
     // jebbaGs(wss, client);
     // kainji(wss, client);
-
-
-
-    // adiabor(wss, client);
-    // aba(wss, client);
-    // afamIv_vGs(wss, client);
-    
-    // ahaoda(wss, client);
-    // ajah(wss, client);
-    // ajaokuta(wss, client);
-    // akangba(wss, client);
-    // aladja(wss, client);
-    // alagbon(wss, client);
-    // alaoji(wss, client);
-    
-    // ayade(wss, client);
-    // azuraIppGs(wss, client);
-    // benin(wss, client);
-    // biu(wss, client);
-    
-    // damaturu(wss, client);
-    
-    // egbinGs(wss, client);
-    
-    // ganmo(wss, client);
-    // gbarainGs(wss, client);
-    
-    // gombe(wss, client);
-    
-    // ibomGs(wss, client);
-    // ihovborNippGs(wss, client);
-    // ikejaWest(wss, client);
-    // ikorodu(wss, client);
-    // ikotAbasi(wss, client);
-
+    // phMain(wss, client);
+    // afamViGs(wss, client);
+    // okpaiGs(wss, client);
+    // odukpaniGs(wss, client);
     //ikotEkpene(wss, host, options);
+
+
+    // adiabor(wss, sentTopic, message);
+    // aba(wss, sentTopic, message);
+    // afamIv_vGs(wss, sentTopic, message);
+    
+    // ahaoda(wss, sentTopic, message);
+    // ajah(wss, sentTopic, message);
+    // ajaokuta(wss, sentTopic, message);
+    // akangba(wss, sentTopic, message);
+    // aladja(wss, sentTopic, message);
+    // alagbon(wss, sentTopic, message);
+    // alaoji(wss, sentTopic, message);
+    
+    // ayade(wss, sentTopic, message);
+    // azuraIppGs(wss, sentTopic, message);
+    // benin(wss, sentTopic, message);
+    // biu(wss, sentTopic, message);
+    
+    // damaturu(wss, sentTopic, message);
+    
+    // egbinGs(wss, sentTopic, message);
+    
+    // ganmo(wss, sentTopic, message);
+    // gbarainGs(wss, sentTopic, message);
+    
+    // gombe(wss, sentTopic, message);
+    
+    // ibomGs(wss, sentTopic, message);
+    // ihovborNippGs(wss, sentTopic, message);
+    // ikejaWest(wss, sentTopic, message);
+    // ikorodu(wss, sentTopic, message);
+    // ikotAbasi(wss, sentTopic, message);
+
+    
     
 
     // itu(wss, client);
@@ -84,7 +87,6 @@ const send = (wss, client) => {
     
 
     // okearo(wss, client);
-    // okpaiGs(wss, client);
     // olorunsogoPhase1Gs(wss, client);
     // omokuGs(wss, client);
     // omotoshoPhase1Gs(wss, client);

@@ -86,6 +86,13 @@ var client  = mqtt.connect(host, options);
 const host2 = process.env.MQTT_AWS_HOST;
 var client2  = mqtt.connect(host2, options2);
 
+import topics from './topics';
+import mqttConnect from './mqttConnect';
+
+mqttConnect(client, topics.ncc);
+mqttConnect(client2, topics.aws);
+
+
 StationsController(wss, client);
 // client.on('connect', function () {
 //     console.log('connected');
