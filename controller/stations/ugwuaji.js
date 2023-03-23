@@ -49,14 +49,14 @@ const ncData = () => {
         "nc": true,
     }
 }
-
+var topics = [];
 export const ugwuaji = (wss, sentTopic, message) => {
-    var topics = [];
+    // var topics = [];
     if(!topics.includes(sentTopic)) topics.push(sentTopic);
     // console.log(topics);
     // console.log('message from mqtt: ', message.toString());
     wss.clients.forEach((wsClient) => {
-        //console.log('client ready');
+        console.log('client ready');
         if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
             // console.log('ugwuaji message sent out: ', sentTopic);
             message = sanitizeData(message, sentTopic);

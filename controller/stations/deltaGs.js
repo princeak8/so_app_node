@@ -28,7 +28,7 @@ export const deltaGs = (wss, sentTopic, message) => {
             //wsData = [data];
             const vals = message.toString();
             // console.log(vals);
-            wsClient.send(vals);
+            // wsClient.send(vals);
         }
     });
 };

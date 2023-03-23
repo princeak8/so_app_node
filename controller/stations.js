@@ -4,20 +4,23 @@ import {
     kaduna, kainji, kainjiGs, kano, katampe, kebbi, lekki, lokoja, markudi, molai, newHaven, odogunyan, odukpaniGs, okearo, okpaiGs, olorunsogoPhase1Gs, omokuGs, omotoshoPhase1Gs, 
     onitsha, oshogbo, owerri, parasEnergyGs,phMain, riversIppGs, sagamu, sakete, sapeleGs, sapeleNippGs, shiroroGs, transamadiGs, ugwuaji, yenegoa, yola
 } from './stations/index';
+import { sendMessage } from '../utilities';
 
 //const send = (wss, host, options) => {
 const send = (wss, client) => {
     client.on('message', async function (sentTopic, message) {
-        alaojiGs(wss, sentTopic, message);
-        dadinKowaGs(wss, sentTopic, message);
-        eket(wss, sentTopic, message);
-        ekim(wss, sentTopic, message);
-        fakun(wss, sentTopic, message);
-        gereguGs(wss, sentTopic, message);
-        gwagwalada(wss, sentTopic, message);
-        lokoja(wss, sentTopic, message);
-        markudi(wss, sentTopic, message);
-        ugwuaji(wss, sentTopic, message);
+        // alaojiGs(wss, sentTopic, message);
+        // dadinKowaGs(wss, sentTopic, message);
+        // eket(wss, sentTopic, message);
+        // ekim(wss, sentTopic, message);
+        // fakun(wss, sentTopic, message);
+        // gereguGs(wss, sentTopic, message);
+        // gwagwalada(wss, sentTopic, message);
+        // lokoja(wss, sentTopic, message);
+        // markudi(wss, sentTopic, message);
+        // ugwuaji(wss, sentTopic, message);
+        // transamadiGs(wss, sentTopic, message);
+        sendMessage(wss, message);
     });
 
     /* MOVED TO AWS */

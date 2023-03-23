@@ -33,8 +33,9 @@ export const jebbaGs = (wss,sentTopic, message) => {
     // console.log(topics);
     // console.log('message from mqtt: ', message.toString());
     wss.clients.forEach((wsClient) => {
-        //console.log('client ready');
+        console.log('client ready');
         if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
+            console.log('Jebba Gs message sent out: ', sentTopic);
             message = sanitizeData(message, sentTopic);
             //wsData = [data];
             const vals = message.toString();
