@@ -29,7 +29,7 @@ export const transmissionData = (vals = '') => {
 export const sendMessage = (wss, message) => {
     
     wss.clients.forEach((wsClient) => {
-        console.log('client ready');
+        // console.log('client ready');
         if (wsClient.readyState === WebSocket.OPEN) {
             const vals = message.toString();
             // console.log(vals);
