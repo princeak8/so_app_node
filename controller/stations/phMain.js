@@ -71,7 +71,7 @@ export const phMain = (wss, sentTopic, message) => {
     //console.log('message from mqtt: ', message.toString());
     wss.clients.forEach((wsClient) => {
         //console.log('client ready');
-        if (wsClient.readyState === WebSocket.OPEN) {
+        if (wsClient.readyState === WebSocket.OPEN && sentTopic == topic) {
             message = sanitizeData(message, sentTopic);
             //wsData = [data];
             const vals = message.toString();

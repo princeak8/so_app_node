@@ -9,18 +9,18 @@ import { sendMessage } from '../utilities';
 //const send = (wss, host, options) => {
 const send = (wss, client) => {
     client.on('message', async function (sentTopic, message) {
-        // alaojiGs(wss, sentTopic, message);
-        // dadinKowaGs(wss, sentTopic, message);
-        // eket(wss, sentTopic, message);
-        // ekim(wss, sentTopic, message);
-        // fakun(wss, sentTopic, message);
-        // gereguGs(wss, sentTopic, message);
-        // gwagwalada(wss, sentTopic, message);
-        // lokoja(wss, sentTopic, message);
-        // markudi(wss, sentTopic, message);
-        // ugwuaji(wss, sentTopic, message);
+        alaojiGs(wss, sentTopic, message);
+        dadinKowaGs(wss, sentTopic, message);
+        eket(wss, sentTopic, message);
+        ekim(wss, sentTopic, message);
+        fakun(wss, sentTopic, message);
+        gereguGs(wss, sentTopic, message);
+        gwagwalada(wss, sentTopic, message);
+        lokoja(wss, sentTopic, message);
+        markudi(wss, sentTopic, message);
+        ugwuaji(wss, sentTopic, message);
         // transamadiGs(wss, sentTopic, message);
-        sendMessage(wss, message);
+        // sendMessage(wss, message);
     });
 
     /* MOVED TO AWS */
