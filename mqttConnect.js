@@ -2,7 +2,7 @@
 const mqtt = (client, topics) => {
     const connectedStations = [];
     client.on('connect', function () {
-        // console.log('connected');
+        console.log('connected');
         if(topics.length > 0) {
             topics.forEach((topic) => {
                 client.subscribe(topic, function (err) {
@@ -10,7 +10,7 @@ const mqtt = (client, topics) => {
                         console.log(topic+': '+err);
                     }else{
                         if(!connectedStations.includes(topic)) connectedStations.push(topic);
-                        // console.log(topic+': Connected');
+                        console.log(topic+': Connected');
                     }
                 })
             })

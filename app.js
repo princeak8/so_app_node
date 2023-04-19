@@ -93,12 +93,12 @@ mqttConnect(client, topics.ncc);
 mqttConnect(client2, topics.aws);
 
 
-StationsController(wss, client);
+// StationsController(wss, client);
 // client.on('connect', function () {
 //     console.log('connected');
 // });
 Stations2Controller(wss, client2);
-//StationsController(wss, host, options);
+StationsController(wss, host, options);
 
 // setInterval(function(){
 //     wss.clients.forEach((client) => {
