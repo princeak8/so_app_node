@@ -67,14 +67,14 @@ wss.on('connection', (ws) => {
 });
 
 const options={
-    clientId:"mqttjs01",
+    clientId: process.env.NCC_CLIENT_ID,
     username:process.env.MQTT_USER,
     password:process.env.MQTT_PASS,
     clean:true
 };
 
 const options2={
-    clientId:"mqttjs02",
+    clientId: process.env.AWS_CLIENT_ID,
     username:process.env.MQTT_AWS_USER,
     password:process.env.MQTT_AWS_PASS,
     clean:true
@@ -89,8 +89,8 @@ var client2  = mqtt.connect(host2, options2);
 import topics from './topics';
 import mqttConnect from './mqttConnect';
 
-mqttConnect(client, topics.ncc);
-mqttConnect(client2, topics.aws);
+mqttConnect(client, topics);
+mqttConnect(client2, topics);
 
 
 // StationsController(wss, client);
@@ -98,7 +98,7 @@ mqttConnect(client2, topics.aws);
 //     console.log('connected');
 // });
 Stations2Controller(wss, client2);
-StationsController(wss, host, options);
+StationsController(wss, client);
 
 // setInterval(function(){
 //     wss.clients.forEach((client) => {
