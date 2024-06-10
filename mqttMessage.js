@@ -14,7 +14,7 @@ const message = (wss, client) => {
         
     });
     client.on('error', function (error) {
-        console.log("failed to connect: "+error);
+        console.log("mqtt message failed to connect: "+error);
     })
 }
 
