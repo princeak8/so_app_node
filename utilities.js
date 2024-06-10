@@ -32,16 +32,20 @@ export const sendMessage = (wss, message) => {
     wss.clients.forEach((wsClient) => {
         // console.log('client ready');
         if (wsClient.readyState === WebSocket.OPEN) {
-            let vals = message.toString();
-            const parsedVals = JSON.parse(vals);
-            const ikoroduLines = ["ikorodu1", "ikorodu2"];
-            if(ikoroduLines.includes(parsedVals.id)) {
-                console.log(vals);
-                vals = ikoroduFn(parsedVals)
-                // console.log(vals);
+            try{
+                let vals = message.toString();
+                const parsedVals = JSON.parse(vals);
+                const ikoroduLines = ["ikorodu1", "ikorodu2"];
+                if(ikoroduLines.includes(parsedVals.id)) {
+                    // console.log(vals);
+                    vals = ikoroduFn(parsedVals)
+                    // console.log(vals);
+                }
+                // console.log(parsedVals.id);
+                wsClient.send(vals);
+            }catch(err) {
+                // console.log('error attempting to send: ', err);
             }
-            // console.log(parsedVals.id);
-            wsClient.send(vals);
         }
     });
 }
