@@ -20,6 +20,7 @@ const send = (wss, client) => {
         // markudi(wss, sentTopic, message);
         // ugwuaji(wss, sentTopic, message);
         // transamadiGs(wss, sentTopic, message);
+        // console.log(sentTopic);
         sendMessage(wss, message);
     });
 

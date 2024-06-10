@@ -27,7 +27,8 @@ const send = (wss, client) => {
         //         wsClient.send(vals);
         //     }
         // });
-        // if(sentTopic == 'sagamu/tv') console.log(message);
+        // if(sentTopic == 'ikorodu2/tv') console.log(message.toString());
+        // console.log(sentTopic);
         sendMessage(wss, message);
     });
 }
