@@ -41,6 +41,9 @@ export const sendMessage = (wss, message) => {
                     vals = ikoroduFn(parsedVals)
                     // console.log(vals);
                 }
+                
+                // if(parsedVals.id == 'phMain') console.log(vals);
+                // console.log(parsedVals);
                 // console.log(parsedVals.id);
                 wsClient.send(vals);
             }catch(err) {
