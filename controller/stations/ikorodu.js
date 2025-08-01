@@ -66,3 +66,12 @@ const sanitizeData = (message, topic) => {
     // }
     return message;
 }
+
+/*
+{
+    "id":"ikorodu",
+    "lines":
+    [
+        {"id":"d23s","td":{"mw":-6.95,"A":125.21,"V":127.68,"mvar":26.78}},{"id":"d24s","td":{"mw":74.91,"A":356.18,"V":128.45,"mvar":22.09}}]
+}
+*/
