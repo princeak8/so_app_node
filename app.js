@@ -7,6 +7,8 @@ var mqtt = require('mqtt');
 const http = require('http');
 var WebSocket = require('ws');
 const queryString = require('query-string');
+const crypto = require("crypto");
+const fs = require("fs");
 
 const wss = new WebSocket.Server({ noServer: true });
 //const wss2 = new WebSocket.Server({ port: 8085, noServer: true });
@@ -17,6 +19,7 @@ const ConnectionsController = require('./controller/connections');
 //const StationsController = require('./controller/stations');
 import StationsController from './controller/stations';
 import Stations2Controller from './controller/stations2';
+require("./decrypt");
 
 const app = express();
 

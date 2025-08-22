@@ -9,6 +9,7 @@ import { sendMessage } from '../utilities';
 //const send = (wss, host, options) => {
 const send = (wss, client) => {
     client.on('message', async function (sentTopic, message) {
+        // if(sentTopic == 'lokojats/tv') console.log(message.toString());
         // alaojiGs(wss, sentTopic, message);
         // dadinKowaGs(wss, sentTopic, message);
         // eket(wss, sentTopic, message);

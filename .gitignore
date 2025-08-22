@@ -4,3 +4,6 @@ tests1.js
 so_app.sql
 encrypt.js
 localStorage.json
+decrypt copy.js
+.env copy
+.env.enc
