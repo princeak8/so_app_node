@@ -124,6 +124,11 @@ StationsController(wss, client);
 
 
 const port = process.env.APP_PORT;
-server.listen(port, () => {
+// server.listen(port, () => {
+//     console.log('Server started on port '+port);
+// })
+
+
+server.listen(port, '0.0.0.0', () => {
     console.log('Server started on port '+port);
 })
