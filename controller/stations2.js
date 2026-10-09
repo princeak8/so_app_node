@@ -29,6 +29,7 @@ const send = (wss, client) => {
         // });
         // if(sentTopic == 'ikorodu2/tv') console.log(message.toString());
         // console.log(sentTopic);
+        //  if(sentTopic == 'ts/fakun/niger/td') console.log("message:", message.toString());
         sendMessage(wss, message);
     });
 }

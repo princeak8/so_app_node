@@ -22,7 +22,7 @@ const aws =     [
                     'OkpaiippGs/tv', 'OkpaiippGs/status',
                     'odukpanits/tv', 'odukpanits/status',
                     'phmains/tv', 'phmains/status',
-                    'transamadi/tv', 'sagamu/tv'
+                    'transamadi/tv', 'sagamu/tv', 'ts/fakun/niger/td'
                 ];
 
 

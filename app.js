@@ -20,6 +20,9 @@ const ConnectionsController = require('./controller/connections');
 import StationsController from './controller/stations';
 import Stations2Controller from './controller/stations2';
 require("./decrypt");
+// import { host, host2, localHost, options, options2, localOptions } from './mqttBootstrap1.js';
+
+
 
 const app = express();
 
@@ -84,9 +87,12 @@ const options2={
 };
 //host = "mqtt://ec2-34-212-195-204.us-west-2.compute.amazonaws.com";//"mqtt://127.0.0.1"
 const host = process.env.MQTT_HOST;
-var client  = mqtt.connect(host, options);
 
 const host2 = process.env.MQTT_AWS_HOST;
+
+console.log("host", host);
+
+var client  = mqtt.connect(host, options);
 var client2  = mqtt.connect(host2, options2);
 
 import topics from './topics';
@@ -118,6 +124,6 @@ StationsController(wss, client);
 
 
 
-server.listen('3001', () => {
-    console.log('Server started on port 3001');
+server.listen('3021', () => {
+    console.log('Server started on port 3021');
 })

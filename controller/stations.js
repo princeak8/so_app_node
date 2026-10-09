@@ -22,6 +22,7 @@ const send = (wss, client) => {
         // ugwuaji(wss, sentTopic, message);
         // transamadiGs(wss, sentTopic, message);
         // console.log(sentTopic);
+        // console.log("message:", message);
         sendMessage(wss, message);
     });
 
