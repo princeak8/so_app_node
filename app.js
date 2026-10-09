@@ -123,7 +123,7 @@ StationsController(wss, client);
 
 
 
-
-server.listen('3021', () => {
-    console.log('Server started on port 3021');
+const port = process.env.APP_PORT;
+server.listen(port, () => {
+    console.log('Server started on port '+port);
 })
